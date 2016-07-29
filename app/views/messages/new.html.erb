@@ -38,4 +38,14 @@
       <%= f.submit "Send", class: 'ink-button' %>
     </div>
   </div>
+
+  <div class="control-group required">
+    <%= f.label :msg_type %>
+    <div class="control">
+      <%= f.select :msg_type, ['email', 'sms'], :selected => params[:msg_type] %>
+      <% if @message.errors[:msg_type] %>
+        <p class="tip error"><%= @message.errors[:msg_type].join(", ") %></p>
+      <% end %>
+    </div>
+  </div>
 <% end %>

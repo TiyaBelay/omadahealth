@@ -17,7 +17,8 @@ describe MessagesController do
       {
         sender: "test@example.com",
         recipient: "test2@example.com",
-        body: "hello there"
+        body: "hello there",
+        msg_type: "email"
       }
     end
 

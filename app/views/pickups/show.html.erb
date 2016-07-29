@@ -13,9 +13,15 @@
   <%= @message.body %>
 </p>
 
+<h4>
+  Type of Message:
+  <%= @message.msg_type %>
+</h4>
+
 <%= form_for @reply, html: {class: 'ink-form'} do |f| %>
   <%= f.hidden_field :sender %>
   <%= f.hidden_field :recipient %>
+  <%= f.hidden_field :msg_type %>
   <div class="control-group">
     <%= f.label :body, "Reply" %>
     <div class="control">

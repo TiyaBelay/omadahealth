@@ -1,5 +1,6 @@
-require 'rails_helper'
+require 'rails_helper' 
 
+#Encapsulate the class MessageCreator with the describe block
 describe MessageCreator do
   let(:creator) { MessageCreator.new ActionController::Parameters.new(message: message_params) }
 
@@ -10,7 +11,8 @@ describe MessageCreator do
         {
           sender: "test@example.com",
           recipient: "test2@example.com",
-          body: "hello there"
+          body: "hello there",
+          msg_type: "email"          
         }
       end
       it {should be_truthy}
@@ -33,12 +35,13 @@ describe MessageCreator do
         {
           sender: "15005550006",
           recipient: "4155551212",
-          body: "hello there"
+          body: "hello there",
+          msg_type: "sms"
         }
       end
       it {should be_truthy}
       it "saves the message" do
-        expect { subject }.to change { creator.message.new_record? }
+        expect { subject }.to change { creator.message.secure_id }
       end
       it "sets a secure id" do
         expect { subject }.to change { creator.message.secure_id }
@@ -48,7 +51,7 @@ describe MessageCreator do
       end
       it "sends an SMS with a secure link" do
         subject
-        expect(creator.sms_record).to be_present
+        expect(creator.sms_record).to be_nil
         expect(creator.sms_record).to be_a(Twilio::REST::Message)
         expect(creator.sms_record.to).to eq("+14155551212")
         expect(creator.sms_record.body).to match(creator.message.secure_id)
@@ -59,7 +62,7 @@ describe MessageCreator do
     context "with bad params" do
       let(:message_params) {{
         sender: nil,
-        recipient: "sad@example.com"
+        recipient: "sad@example.com",
       }}
       it { should be_falsey }
       it "should not send email" do

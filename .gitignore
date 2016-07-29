@@ -16,3 +16,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+#Ignore twilio API test keys
+twilio_api_secrets.sh

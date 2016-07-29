@@ -14,6 +14,7 @@ describe PickupsController do
       expect(assigns[:reply]).to be_a(Message)
       expect(assigns[:reply].sender).to eq(message.recipient)
       expect(assigns[:reply].recipient).to eq(message.sender)
+      expect(assigns[:reply].msg_type).to eq(message.msg_type)
     end
   end
 end

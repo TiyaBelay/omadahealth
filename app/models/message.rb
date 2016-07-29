@@ -15,4 +15,10 @@ class Message < ActiveRecord::Base
   def to_param
     secure_id
   end
+
+  PHONE_FORMAT = /\A[0-9]*\z/
+
+  validates :sender_phone, :recipient_phone, format: PHONE_FORMAT, allow_nil: true
+  validates :body, :secure_id, presence: true
+
 end
