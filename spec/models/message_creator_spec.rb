@@ -41,7 +41,7 @@ describe MessageCreator do
       end
       it {should be_truthy}
       it "saves the message" do
-        expect { subject }.to change { creator.message.secure_id }
+        expect { subject }.to change { creator.message.new_record? }
       end
       it "sets a secure id" do
         expect { subject }.to change { creator.message.secure_id }
