@@ -51,7 +51,7 @@ describe MessageCreator do
       end
       it "sends an SMS with a secure link" do
         subject
-        expect(creator.sms_record).to be_nil
+        expect(creator.sms_record).to be_present
         expect(creator.sms_record).to be_a(Twilio::REST::Message)
         expect(creator.sms_record.to).to eq("+14155551212")
         expect(creator.sms_record.body).to match(creator.message.secure_id)
